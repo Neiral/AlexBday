@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Countdown to Alex's Birthday 🎉</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: linear-gradient(135deg, #b3cde0, #dce3ec);
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 20px;
+      overflow-x: hidden;
+      color: #253f53;
+      position: relative;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(16px);
+      border-radius: 20px;
+      max-width: 500px;
+      width: 100%;
+      padding: 35px 25px 50px;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      position: relative;
+      z-index: 10;
+      animation: fadeIn 1.2s ease forwards;
+    }
+    h1 {
+      font-weight: 600;
+      font-size: 2.6rem;
+      margin-bottom: 10px;
+      color: #2a4b64;
+      animation: slideDown 1.3s ease forwards;
+    }
+    .message {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.5rem;
+      color: #4b708c;
+      margin-bottom: 30px;
+      line-height: 1.4;
+      animation: slideUp 1.3s ease forwards;
+    }
+    .countdown {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      font-weight: 600;
+      color: #253f53;
+      flex-wrap: wrap;
+    }
+    .countdown-item {
+      flex: 1;
+      background: #d9e5f0;
+      border-radius: 14px;
+      padding: 16px 8px;
+      box-shadow: 0 6px 16px rgba(34, 78, 112, 0.18);
+      transition: background 0.3s ease, transform 0.3s ease;
+      animation: fadeIn 1.5s ease forwards;
+    }
+    .countdown-item:hover {
+      background: #c4d9ed;
+      transform: scale(1.05);
+    }
+    .countdown-item > .number {
+      font-size: 2.6rem;
+      margin-bottom: 4px;
+      color: #1c3345;
+    }
+    .countdown-item > .label {
+      font-size: 1rem;
+      color: #597488;
+    }
+    .cats-container {
+      margin-top: 35px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+    .cat-image {
+      width: 95px;
+      height: 95px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+      border: 3px solid #89a8c4;
+      animation: bobbing 5s ease-in-out infinite;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: #f0f4f8;
+    }
+    .cat-image:hover {
+      transform: scale(1.12);
+      box-shadow: 0 12px 24px rgba(34, 78, 112, 0.4);
+      border-color: #f39c9c;
+    }
+    .hearts-container {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      z-index: 5;
+    }
+    .heart {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background: #e2848d;
+      transform: rotate(-45deg);
+      opacity: 0.8;
+      border-radius: 5px;
+    }
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background: #e2848d;
+      border-radius: 50%;
+    }
+    .heart::before { top: -8px; left: 0; }
+    .heart::after { top: 0; left: 8px; }
+    @keyframes floatUp {
+      0% { opacity: 0.8; transform: translateY(0) rotate(-45deg) scale(1); }
+      100% { opacity: 0; transform: translateY(-120vh) rotate(-45deg) scale(1.4); }
+    }
+    .sparkle {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        radial-gradient(2px 2px at 10% 20%, rgba(255,255,255,0.8), transparent 60%),
+        radial-gradient(2px 2px at 40% 40%, rgba(255,255,255,0.4), transparent 60%),
+        radial-gradient(2px 2px at 70% 80%, rgba(255,255,255,0.6), transparent 60%);
+      animation: twinkle 5s ease-in-out infinite;
+      opacity: 0.2;
+    }
+    @keyframes bobbing {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 0.7; }
+    }
+    @media (max-width: 520px) {
+      .countdown { flex-wrap: wrap; gap: 10px; }
+      .countdown-item { flex: 0 0 45%; margin-bottom: 10px; }
+      .cat-image { width: 85px; height: 85px; }
+      h1 { font-size: 2.1rem; }
+      .message { font-size: 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="hearts-container" aria-hidden="true"></div>
+<div class="sparkle" aria-hidden="true"></div>
+<main class="container">
+  <h1>Countdown to Alex’s Birthday 🎉</h1>
+  <p class="message">Counting down to your special day, Alex — from your friend (and your girlfriend’s friend) who loves how much you love cats! 🐱💙</p>
+  <div class="countdown">
+    <div class="countdown-item"><div class="number" id="days">--</div><div class="label">Days</div></div>
+    <div class="countdown-item"><div class="number" id="hours">--</div><div class="label">Hours</div></div>
+    <div class="countdown-item"><div class="number" id="minutes">--</div><div class="label">Minutes</div></div>
+    <div class="countdown-item"><div class="number" id="seconds">--</div><div class="label">Seconds</div></div>
+  </div>
+  <div class="cats-container">
+    <img src="cat1.png" alt="Cute cat 1" class="cat-image" />
+    <img src="cat2.png" alt="Cute cat 2" class="cat-image" />
+    <img src="cat3.png" alt="Cute cat 3" class="cat-image" />
+    <img src="cat4.png" alt="Cute cat 4" class="cat-image" />
+    <img src="cat5.png" alt="Cute cat 5" class="cat-image" />
+    <img src="cat6.png" alt="Cute cat 6" class="cat-image" />
+  </div>
+</main>
+<script>
+  const heartsContainer = document.querySelector('.hearts-container');
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.bottom = '-25px';
+    heart.style.animation = `floatUp ${Math.random() * 3 + 4}s linear forwards`;
+    heartsContainer.appendChild(heart);
+    heart.addEventListener('animationend', () => heart.remove());
+  }
+  setInterval(createHeart, 300);
+
+  function countdownToDate(targetDate) {
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+
+    function updateCountdown() {
+      const now = new Date();
+      const nowUTC = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds());
+      const diff = targetDate - nowUTC;
+      if (diff <= 0) {
+        daysEl.textContent = '0';
+        hoursEl.textContent = '00';
+        minutesEl.textContent = '00';
+        secondsEl.textContent = '00';
+        clearInterval(timerInterval);
+        return;
+      }
+      const seconds = Math.floor(diff / 1000) % 60;
+      const minutes = Math.floor(diff / (1000 * 60)) % 60;
+      const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      daysEl.textContent = days;
+      hoursEl.textContent = String(hours).padStart(2, '0');
+      minutesEl.textContent = String(minutes).padStart(2, '0');
+      secondsEl.textContent = String(seconds).padStart(2, '0');
+    }
+    updateCountdown();
+    const timerInterval = setInterval(updateCountdown, 1000);
+  }
+
+  (function init() {
+    const now = new Date();
+    const nowUTC = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds());
+    let year = nowUTC.getFullYear();
+    let targetDate = new Date(Date.UTC(year, 7, 21, 0, 0, 0));
+    if (nowUTC > targetDate) {
+      targetDate = new Date(Date.UTC(year + 1, 7, 21, 0, 0, 0));
+    }
+    countdownToDate(targetDate);
+  })();
+</script>
+</body>
+</html>
